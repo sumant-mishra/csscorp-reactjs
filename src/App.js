@@ -15,6 +15,7 @@ class App extends Component {
     super()
 
     this.state = {
+      color:"blue",
       movies : [],
       selectedMovieName: ""
     }
@@ -46,7 +47,8 @@ btnClickHandler(item){
   render() {
     return (
       <div className="App">
-        <input type="button" value="Click to load JSON" onClick={this.onClickHandler.bind(this)}/> {this.state.selectedMovieName}
+        <input type="button" value="Click to load JSON" onClick={this.onClickHandler.bind(this)}/> 
+        <span className={(this.state.color == "red")? "title-red" : "title-blue"}>{this.state.selectedMovieName}</span>
         <Main propsVal={10} movies={this.state.movies} btnClickHandler={this.btnClickHandler.bind(this)}/>
       </div>
     );
