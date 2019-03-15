@@ -15,8 +15,7 @@ class App extends Component {
     super()
 
     this.state = {
-      movies : [],
-      selectedMovieName: ""
+      movies : []
     }
   }
 
@@ -34,20 +33,26 @@ class App extends Component {
     })
 }
 
-btnClickHandler(item){
-  console.log("btn click from Main Component");
-
-  this.setState({
-    selectedMovieName: item.title
-  })
-
-}
-
   render() {
     return (
       <div className="App">
-        <input type="button" value="Click to load JSON" onClick={this.onClickHandler.bind(this)}/> {this.state.selectedMovieName}
-        <Main propsVal={10} movies={this.state.movies} btnClickHandler={this.btnClickHandler.bind(this)}/>
+        <Router>
+            <div>
+              <ul>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/about">About</Link>
+                </li>
+              </ul>
+      
+              <hr />
+              
+              <Route exact path="/" component={Home} />
+              <Route path="/about" component={About} />
+            </div>
+          </Router>
       </div>
     );
   }

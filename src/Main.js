@@ -8,7 +8,7 @@ class Main extends Component{
 
         super(props);
         this.state = {
-            val: 10,
+            val: 3,
             movies: [
                 {
                     id: 0,
@@ -44,7 +44,9 @@ class Main extends Component{
         console.log("--------> calling componentDidUpdate")
     }
 
-    
+    onClickHandler(item){
+        this.props.btnClickHandler(item);
+    }
 
     render(){
 
@@ -52,11 +54,13 @@ class Main extends Component{
         const {propsVal} = this.props
 
         const moviesList = this.state.movies.map((item) => {
-            return <li key={item.id}>{item.title}</li>
+            return <li key={item.id} onClick={this.onClickHandler.bind(this, item)}>{item.title}</li>
         })
 
         return(
-            <div>Hello Main Component {this.state.val} and props is {propsVal}
+            <div>
+                
+                Hello Main Component {(this.state.val == 10) ? this.state.val : 15} and props is {propsVal}
                 <ul>{moviesList}</ul>
             </div>
         )
